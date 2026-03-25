@@ -12,11 +12,11 @@ export function TopBar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/5 bg-surface/85 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary shadow-glow">
-            <span className="text-lg font-semibold">P</span>
+    <header className="sticky top-0 z-50 px-4 pt-4 md:px-6">
+      <div className="mx-auto flex max-w-7xl items-center justify-between rounded-[1.75rem] border border-white/10 bg-surface/80 px-4 py-4 shadow-[0_18px_50px_rgba(0,0,0,0.28)] backdrop-blur-xl md:px-6">
+        <Link href="/" className="flex items-center gap-3 rounded-2xl steady-transition hover:opacity-90">
+          <div className="flex h-11 w-11 items-center justify-center rounded-[1rem] bg-primary/10 text-primary shadow-glow">
+            <span className="font-headline text-lg font-semibold">P</span>
           </div>
           <div>
             <div className="font-headline text-2xl font-bold tracking-tight text-primary">
@@ -38,21 +38,29 @@ export function TopBar() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "font-label text-xs uppercase tracking-[0.15em] steady-transition",
-                  active ? "text-primary" : "text-on-surface-variant hover:text-primary",
+                  "group rounded-full px-3 py-2 font-label text-xs uppercase tracking-[0.15em] steady-transition",
+                  active
+                    ? "bg-primary/10 text-primary"
+                    : "text-on-surface-variant hover:bg-white/5 hover:text-primary",
                 )}
               >
-                {item.label}
+                <span>{item.label}</span>
+                <span
+                  className={cn(
+                    "mt-1 block h-px w-full surface-line opacity-0 steady-transition",
+                    active && "opacity-100",
+                  )}
+                />
               </Link>
             );
           })}
         </nav>
 
-        <div className="rounded-full bg-surface-container-high px-4 py-2 ghost-border">
+        <div className="rounded-[1rem] bg-surface-container-high px-4 py-2 ghost-border">
           <div className="font-label text-[10px] uppercase tracking-[0.18em] text-on-surface-variant">
             Polygon Amoy
           </div>
-          <div className="font-headline text-sm font-semibold text-primary">
+          <div className="mt-1 font-headline text-sm font-semibold text-primary">
             0x71C...492d
           </div>
         </div>
@@ -65,8 +73,8 @@ export function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 bg-surface/90 px-4 py-3 backdrop-blur-xl md:hidden">
-      <div className="mx-auto flex max-w-md items-center justify-between">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-4 pt-2 md:hidden">
+      <div className="mx-auto flex max-w-md items-center justify-between rounded-[1.5rem] border border-white/10 bg-surface/90 px-3 py-2 shadow-[0_18px_50px_rgba(0,0,0,0.28)] backdrop-blur-xl">
         {navigation.map((item) => {
           const active =
             item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
@@ -99,7 +107,7 @@ export function PageShell({
   return (
     <div className="min-h-screen bg-surface text-on-surface">
       <TopBar />
-      <main className="mx-auto max-w-7xl px-6 pb-28 pt-10">{children}</main>
+      <main className="mx-auto max-w-7xl px-6 pb-28 pt-10 md:pt-12">{children}</main>
       <BottomNav />
     </div>
   );
@@ -144,5 +152,48 @@ export function SecondaryButton({
     >
       {children}
     </Link>
+  );
+}
+
+export function Panel({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={cn("rounded-[2rem] bg-surface-container p-6 md:p-8", className)}>
+      {children}
+    </div>
+  );
+}
+
+export function PageIntro({
+  eyebrow,
+  title,
+  body,
+  aside,
+}: {
+  eyebrow: React.ReactNode;
+  title: React.ReactNode;
+  body?: React.ReactNode;
+  aside?: React.ReactNode;
+}) {
+  return (
+    <section className="mb-10 flex flex-col gap-6 md:mb-14 md:flex-row md:items-end md:justify-between">
+      <div className="max-w-3xl">
+        <SectionLabel>{eyebrow}</SectionLabel>
+        <h1 className="mt-4 font-headline text-4xl font-bold tracking-tight md:text-5xl">
+          {title}
+        </h1>
+        {body ? (
+          <p className="mt-4 max-w-2xl text-base leading-7 text-on-surface-variant md:text-lg">
+            {body}
+          </p>
+        ) : null}
+      </div>
+      {aside ? <div>{aside}</div> : null}
+    </section>
   );
 }

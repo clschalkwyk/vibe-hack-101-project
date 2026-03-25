@@ -1,4 +1,4 @@
-import { PageShell, PrimaryButton, SectionLabel } from "../../components/proofpass-ui";
+import { PageIntro, PageShell, Panel, PrimaryButton } from "../../components/proofpass-ui";
 
 const fieldClassName =
   "w-full rounded-2xl bg-surface-container-lowest px-5 py-4 text-base text-on-surface outline-none ring-1 ring-transparent steady-transition placeholder:text-outline focus:ring-primary/30";
@@ -8,20 +8,20 @@ export default function IdentityPage() {
     <PageShell>
       <section className="grid gap-8 lg:grid-cols-12">
         <div className="space-y-6 lg:col-span-5 lg:pr-8">
-          <SectionLabel>Step 1 / 3</SectionLabel>
-          <h1 className="font-headline text-5xl font-bold leading-tight tracking-tight">
-            Secure your
-            <br />
-            <span className="bg-proof-gradient bg-clip-text text-transparent">
-              sovereign vault
-            </span>
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-on-surface-variant">
-            Enter mock KYC data locally. This is demo identity input, but the rule is
-            real: raw PII should never leave the device.
-          </p>
+          <PageIntro
+            eyebrow="Step 1 / 3"
+            title={
+              <>
+                Secure your{" "}
+                <span className="bg-proof-gradient bg-clip-text text-transparent">
+                  sovereign vault
+                </span>
+              </>
+            }
+            body="Enter mock KYC data locally. This is demo input, but the rule is real: raw PII should never leave the device."
+          />
 
-          <div className="rounded-3xl bg-surface-container-low p-6">
+          <Panel className="rounded-[1.75rem] bg-surface-container-low p-6">
             <div className="font-headline text-lg font-bold text-tertiary-fixed">
               Local-only processing
             </div>
@@ -29,11 +29,11 @@ export default function IdentityPage() {
               The frontend encrypts this payload client-side before it becomes an IPFS
               object and on-chain credential hash.
             </p>
-          </div>
+          </Panel>
         </div>
 
         <div className="lg:col-span-7">
-          <div className="glass-panel rounded-[2rem] p-8 ghost-border md:p-10">
+          <div className="glass-panel rounded-[2.25rem] p-8 ghost-border md:p-10">
             <div className="mb-10 flex gap-3">
               <div className="h-1.5 flex-1 rounded-full bg-primary" />
               <div className="h-1.5 flex-1 rounded-full bg-surface-container-highest" />

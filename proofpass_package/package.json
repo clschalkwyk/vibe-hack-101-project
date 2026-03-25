@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "clean": "node ./scripts/clean-next.cjs",
-    "dev": "npm run clean && node --require ./scripts/node-localstorage-shim.cjs ./node_modules/next/dist/bin/next dev",
-    "build": "npm run clean && node --require ./scripts/node-localstorage-shim.cjs ./node_modules/next/dist/bin/next build",
-    "start": "node --require ./scripts/node-localstorage-shim.cjs ./node_modules/next/dist/bin/next start",
+    "dev": "NEXT_DIST_DIR=.next-dev npm run clean && NODE_OPTIONS='--require ./scripts/node-localstorage-shim.cjs' NEXT_DIST_DIR=.next-dev next dev",
+    "build": "NEXT_DIST_DIR=.next-build npm run clean && NODE_OPTIONS='--require ./scripts/node-localstorage-shim.cjs' NEXT_DIST_DIR=.next-build next build",
+    "start": "NODE_OPTIONS='--require ./scripts/node-localstorage-shim.cjs' NEXT_DIST_DIR=.next-build next start",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

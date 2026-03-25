@@ -1,34 +1,34 @@
 import { proofFields } from "../../components/proofpass-data";
 import {
+  PageIntro,
+  Panel,
   PageShell,
   PrimaryButton,
   SecondaryButton,
-  SectionLabel,
 } from "../../components/proofpass-ui";
 
 export default function VerifyPage() {
   return (
     <PageShell>
-      <section className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-        <div>
-          <SectionLabel>Zero-Knowledge Style Reveal</SectionLabel>
-          <h1 className="mt-4 font-headline text-4xl font-bold tracking-tight">
-            Verification portal
-          </h1>
-        </div>
-        <div className="rounded-2xl bg-surface-container px-4 py-3">
-          <div className="font-label text-[10px] uppercase tracking-[0.18em] text-on-surface-variant">
-            Requesting dapp
+      <PageIntro
+        eyebrow="Selective Disclosure Reveal"
+        title="Verification portal"
+        body="One field is revealed because the verifier asked for one fact. The rest of the record stays hidden."
+        aside={
+          <div className="rounded-2xl bg-surface-container px-4 py-3">
+            <div className="font-label text-[10px] uppercase tracking-[0.18em] text-on-surface-variant">
+              Requesting dapp
+            </div>
+            <div className="mt-1 font-headline text-lg font-semibold">
+              The Wine Cellar
+            </div>
           </div>
-          <div className="mt-1 font-headline text-lg font-semibold">
-            The Wine Cellar
-          </div>
-        </div>
-      </section>
+        }
+      />
 
       <section className="grid gap-8 lg:grid-cols-12 lg:items-start">
         <div className="space-y-4 lg:col-span-7">
-          <div className="rounded-[2rem] bg-surface-container p-6 md:p-8">
+          <Panel className="rounded-[2.25rem]">
             <div className="font-headline text-xl font-bold">Institutional data disclosure</div>
             <div className="mt-6 space-y-4">
               {proofFields.map((field) => (
@@ -68,30 +68,30 @@ export default function VerifyPage() {
                 </div>
               ))}
             </div>
-          </div>
+          </Panel>
 
           <div className="grid gap-4 md:grid-cols-2">
-            <div className="rounded-2xl bg-surface-container-low p-5">
+            <Panel className="rounded-[1.5rem] bg-surface-container-low p-5">
               <div className="font-label text-[10px] uppercase tracking-[0.18em] text-on-surface-variant">
                 Match type
               </div>
               <div className="mt-2 font-headline text-lg font-semibold">
                 On-chain match found
               </div>
-            </div>
-            <div className="rounded-2xl bg-surface-container-low p-5">
+            </Panel>
+            <Panel className="rounded-[1.5rem] bg-surface-container-low p-5">
               <div className="font-label text-[10px] uppercase tracking-[0.18em] text-on-surface-variant">
                 Authority
               </div>
               <div className="mt-2 font-headline text-lg font-semibold">
                 Issuer trusted
               </div>
-            </div>
+            </Panel>
           </div>
         </div>
 
         <div className="lg:col-span-5">
-          <div className="glass-panel rounded-[2rem] p-8 ghost-border">
+          <div className="glass-panel rounded-[2.25rem] p-8 ghost-border">
             <h2 className="font-headline text-3xl font-bold tracking-tight">
               Finalize proof
             </h2>

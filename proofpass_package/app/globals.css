@@ -18,8 +18,9 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at top right, rgba(123, 75, 229, 0.18), transparent 30%),
-    radial-gradient(circle at bottom left, rgba(78, 222, 163, 0.14), transparent 25%),
+    radial-gradient(circle at top right, rgba(123, 75, 229, 0.22), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(78, 222, 163, 0.12), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 18%),
     #0b1326;
   color: #dae2fd;
   font-family: Inter, "Segoe UI", sans-serif;
@@ -41,6 +42,7 @@ a {
 .glass-panel {
   background: rgba(60, 74, 94, 0.36);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .vault-grid {
@@ -56,5 +58,40 @@ a {
 }
 
 .steady-transition {
-  transition: all 300ms ease-in-out;
+  transition:
+    background-color 200ms ease-in-out,
+    color 200ms ease-in-out,
+    border-color 200ms ease-in-out,
+    box-shadow 200ms ease-in-out,
+    transform 200ms ease-in-out,
+    opacity 200ms ease-in-out;
+}
+
+.surface-line {
+  background: linear-gradient(
+    90deg,
+    rgba(208, 188, 255, 0),
+    rgba(208, 188, 255, 0.28),
+    rgba(208, 188, 255, 0)
+  );
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(208, 188, 255, 0.8);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
